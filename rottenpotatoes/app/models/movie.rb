@@ -5,6 +5,6 @@ class Movie < ActiveRecord::Base
 
   def movies_with_same_director
     # List of all movies with same director, except current movie
-    movies_without_original_movie = Movie.where(director:self.director).where.not(id: self.id)
+    Movie.where(director:self.director).where.not(id: self.id)
   end
 end
