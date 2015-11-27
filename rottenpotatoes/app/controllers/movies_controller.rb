@@ -4,10 +4,23 @@ class MoviesController < ApplicationController
     params.require(:movie).permit(:title, :rating, :description, :release_date, :director)
   end
 
-  def show
+  def similar
     id = params[:id] # retrieve movie ID from URI route
     @movie = Movie.find(id) # look up movie by unique ID
     # will render app/views/movies/show.<extension> by default
+    @director = @movie.director
+    unless @director.nil? || @director.empty?
+      # List of all movies with same director, except current movie
+      @movies_without_original_movie = Movie.where(director:@director).where.not(id: @movie.id)
+    else
+      flash[:notice] = "Unfortunately '#{@movie.title}' has no director info"
+      redirect_to root_path
+    end
+  end
+
+  def show
+    id = params[:id] # retrieve movie ID from URI route
+    @movie = Movie.find(id) # look up movie by unique ID
   end
 
   def index

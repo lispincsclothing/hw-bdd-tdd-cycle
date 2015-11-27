@@ -1,0 +1,18 @@
+%h2 Movies whose director is #{@movie.director}, the same as #{@movie.title}
+
+%table#movies
+  %thead
+    %tr
+      %th= link_to 'Movie Title', movies_path(:sort => 'title')
+      %th Rating
+      %th= link_to 'Release Date', movies_path(:sort => 'release_date')
+      %th More Info
+  %tbody
+    - @movies_without_original_movie .each do |movie|
+      %tr
+        %td= movie.title
+        %td= movie.rating
+        %td= movie.release_date
+        %td= link_to "More about #{movie.title}", movie_path(movie)
+
+= link_to 'Back to all movie list', movies_path
