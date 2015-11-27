@@ -1987,3 +1987,5 @@ Started GET "/assets/jquery_ujs.self.js?body=1" for ::1 at 2015-11-26 20:51:49 -
 
 
 Started GET "/assets/application.self.js?body=1" for ::1 at 2015-11-26 20:51:49 -0800
+  [1m[36mMovie Load (0.1ms)[0m  [1mSELECT  "movies".* FROM "movies"  ORDER BY "movies"."id" ASC LIMIT 1[0m
+  [1m[35mMovie Load (0.3ms)[0m  SELECT "movies".* FROM "movies" WHERE "movies"."director" = ? AND ("movies"."id" != ?)  [["director", "test"], ["id", 1]]

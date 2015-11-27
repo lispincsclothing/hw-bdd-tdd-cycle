@@ -11,7 +11,7 @@ class MoviesController < ApplicationController
     @director = @movie.director
     unless @director.nil? || @director.empty?
       # List of all movies with same director, except current movie
-      @movies_without_original_movie = Movie.where(director:@director).where.not(id: @movie.id)
+      @movies = @movie.movies_with_same_director
     else
       flash[:notice] = "Unfortunately '#{@movie.title}' has no director info"
       redirect_to root_path
