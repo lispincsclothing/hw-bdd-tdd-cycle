@@ -9,10 +9,7 @@ class MoviesController < ApplicationController
     @movie = Movie.find(id) # look up movie by unique ID
     # will render app/views/movies/show.<extension> by default
     @movies = @movie.movies_with_same_director
-    unless @movies.nil? || @movies.empty?
-      # List of all movies with same director, except current movie
-      @movies = @movie.movies_with_same_director
-    else
+    if @movies.nil? || @movies.empty?
       flash[:notice] = "Unfortunately '#{@movie.title}' has no director info"
       redirect_to root_path
     end
