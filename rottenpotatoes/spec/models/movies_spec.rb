@@ -1,4 +1,5 @@
 require 'rails_helper'
+# http://stackoverflow.com/questions/5974360/rspec-difference-between-let-and-before-block
 
 RSpec.describe 'Movies', type: :model do
   before(:each) do
